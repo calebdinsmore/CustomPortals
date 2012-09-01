@@ -1,0 +1,10 @@
+name: CustomPortals
+main: com.ghomerr.customportals.CustomPortals
+version: 1.0.0 [1.3.1-R2.0]
+author: Ghomerr
+description: Make your own fancy portals.
+
+commands:
+    customportals:
+        description: Make your own fancy portals.
+        aliases: [cp, custportals, customportal, cportal]
