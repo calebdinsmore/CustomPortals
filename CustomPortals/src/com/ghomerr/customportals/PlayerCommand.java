@@ -4,8 +4,10 @@ public enum PlayerCommand
 {
 	ON("customportals.on"),
 	OFF("customportals.off"),
-	USEPERMISSIONS("customportals.conf"),
+	ENDERFRAMEBLOCK("customportals.conf"),
+	NETHERFRAMEBLOCK("customportals.conf"),
 	MAXPORTALBLOCKS("customportals.conf"),
+	USEPERMISSIONS("customportals.conf"),
 	UNKNOWN;
 	
 	private String permNode;

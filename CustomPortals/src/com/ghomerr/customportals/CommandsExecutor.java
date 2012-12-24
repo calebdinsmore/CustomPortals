@@ -1,6 +1,7 @@
 package com.ghomerr.customportals;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -62,6 +63,56 @@ public class CommandsExecutor implements CommandExecutor
 							}
 							break;
 							
+						case ENDERFRAMEBLOCK:
+							if (param2 != null)
+							{
+								final Material mat = BlockUtils.getBlockType(param2);
+								if (mat != null)
+								{
+									plugin.enderFrameBlock = mat;
+									plugin.getConfig().set(ConfigParam.ENDER_FRAME_BLOCK.getValue(), mat.name());
+									plugin.saveConfig();
+									player.sendMessage(ChatColor.YELLOW + "Ender Frame block new value: " + mat.name());
+								}
+								else
+								{
+									plugin.enderFrameBlock = null;
+									plugin.getConfig().set(ConfigParam.ENDER_FRAME_BLOCK.getValue(), "");
+									plugin.saveConfig();
+									player.sendMessage(ChatColor.YELLOW + "Ender Frame block disabled.");
+								}
+							}
+							else
+							{
+								player.sendMessage(ChatColor.YELLOW + "Ender Frame block: " + ((plugin.enderFrameBlock == null)? "disabled" : plugin.enderFrameBlock));
+							}
+							break;
+							
+						case NETHERFRAMEBLOCK:
+							if (param2 != null)
+							{
+								final Material mat = BlockUtils.getBlockType(param2);
+								if (mat != null)
+								{
+									plugin.netherFrameBlock = mat;
+									plugin.getConfig().set(ConfigParam.NETHER_FRAME_BLOCK.getValue(), mat.name());
+									plugin.saveConfig();
+									player.sendMessage(ChatColor.YELLOW + "Nether Frame block new value: " + mat.name());
+								}
+								else
+								{
+									plugin.netherFrameBlock = null;
+									plugin.getConfig().set(ConfigParam.NETHER_FRAME_BLOCK.getValue(), "");
+									plugin.saveConfig();
+									player.sendMessage(ChatColor.YELLOW + "Nether Frame block disabled.");
+								}
+							}
+							else
+							{
+								player.sendMessage(ChatColor.YELLOW + "Nether Frame block: " + ((plugin.netherFrameBlock == null)? "disabled" : plugin.netherFrameBlock));
+							}
+							break;
+							
 						case USEPERMISSIONS:
 							if (param2 != null)
 							{
@@ -117,7 +168,11 @@ public class CommandsExecutor implements CommandExecutor
 			}
 			else
 			{
-				player.sendMessage(ChatColor.YELLOW + "Usage: /cp ON|OFF or /cp userpermissions true|false or /cp maxportalblocks <positive number>");
+				player.sendMessage(ChatColor.YELLOW + "Usage: /cp ON|OFF to enable Custom Portal for you.");
+				player.sendMessage(ChatColor.YELLOW + "/cp userpermissions true|false to update permissions usage.");
+				player.sendMessage(ChatColor.YELLOW + "/cp maxportalblocks [positive number] to update the max portal block you can fill at once.");
+				player.sendMessage(ChatColor.YELLOW + "/cp netherframeblock [BlockType|other] to enable or disable globally the Nether frame block allowed.");
+				player.sendMessage(ChatColor.YELLOW + "/cp enderframeblock [BlockType|other] to enable or disable globally the Ender frame block allowed.");
 			}
 		}
 		else

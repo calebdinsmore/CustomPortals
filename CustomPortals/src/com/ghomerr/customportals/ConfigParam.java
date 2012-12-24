@@ -2,8 +2,10 @@ package com.ghomerr.customportals;
 
 public enum ConfigParam
 {
-	USE_PERMISSIONS("usepermissions"),
-	MAX_PORTAL_BLOCKS("maxportalblocks");
+	NETHER_FRAME_BLOCK("netherframeblock"),
+	ENDER_FRAME_BLOCK("enderframeblock"),
+	MAX_PORTAL_BLOCKS("maxportalblocks"),
+	USE_PERMISSIONS("usepermissions");
 	
 	public String value;
 	
