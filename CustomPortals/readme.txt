@@ -23,7 +23,8 @@ Main command is /customportals (with some convenient aliases: cp, custportals, c
 
 How to create portals:
 * Nether: enable the custom portals for your player with /cp on. Then, get a flint and steel in your hand and click on the upper face of the lower block
-of the portal frame. In case of wrong portal shape, just break one block, and all the portal will disappear. 
+of the portal frame. In case of wrong portal shape, just break one block, and all the portal will disappear. Try to be in front of the portal 
+when you create it, otherwise, your direction will be wrong and the creation of the portal may fail.
 * Ender: enable the custom portals for your player with /cp on. Then, get an eye of ender in your hand and click on the inside face of the portal
 frame block. In case of wrong portal shape, you can clean the ender portal by placing a wool block (any color) on the ender portal block. If
 you have enable the custom portals (/cp on), the plugin will clean the entire ender portal. You cannot create ender portal in Ender worlds.
@@ -37,6 +38,11 @@ customportals.ender # allows to create a custom ender portal
 customportals.clean # allows to clean ender portals
 
 Changelogs:
+Version 1.1.1 on 2013-02-11:
+* Support Recommanded Build 1.4.7-R1.0
+* Added a check of the type of the clicked block for Nether Portal to avoid ability to build portal on wrong frames.
+* Fixed the clean nether portal method to work as the fill nether portal method (up-right-down-left, instead of coordinates)
+
 Version 1.1.0 on 2012-24-12:
 * Support Bukkit Dev Build 1.4.6
 * Added new configuration parameters (netherframeblock and enderframeblock) with respective commands to choose one block for each kind of portal.

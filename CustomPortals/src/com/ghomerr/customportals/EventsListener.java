@@ -72,7 +72,16 @@ public class EventsListener implements Listener
 						}
 						else
 						{
-							firstNode = clickedBlock.getRelative(BlockFace.UP);
+							if (plugin.netherFrameBlock != null && plugin.netherFrameBlock != clickedBlock.getType())
+							{
+								player.sendMessage(ChatColor.RED + "Unauthorized block " + clickedBlock.getType() + " used to build " 
+										+ portalType + " portal. Expected: " + plugin.netherFrameBlock);
+								return;
+							}
+							else
+							{
+								firstNode = clickedBlock.getRelative(BlockFace.UP);
+							}
 						}
 						break;
 
@@ -84,7 +93,16 @@ public class EventsListener implements Listener
 						}
 						else
 						{
-							firstNode = clickedBlock.getRelative(event.getBlockFace());
+							if (plugin.enderFrameBlock != null && plugin.enderFrameBlock != clickedBlock.getType())
+							{
+								player.sendMessage(ChatColor.RED + "Unauthorized block " + clickedBlock.getType() + " used to build " 
+										+ portalType + " portal. Expected: " + plugin.enderFrameBlock);
+								return;
+							}
+							else
+							{
+								firstNode = clickedBlock.getRelative(event.getBlockFace());
+							}
 						}
 						break;
 						
@@ -96,6 +114,7 @@ public class EventsListener implements Listener
 						LOGGER.warning("[CustomPortals] Unhandled portal type on CLICKING: " + portalType);
 				}
 
+				BlockFace portalDirection = null;
 				try
 				{
 					if (firstNode != null && firstNode.getType() == Material.AIR)
@@ -111,7 +130,7 @@ public class EventsListener implements Listener
 									if (eyesDirection != null)
 									{
 										event.setCancelled(true);
-										final BlockFace portalDirection = NextDirection.get(eyesDirection);
+										portalDirection = NextDirection.get(eyesDirection);
 										LOGGER.info("[CP-Debug] portalDirection = " + portalDirection);
 										plugin.fillNetherPortal(playerName, firstNode, portalDirection, OppositeDirection.get(portalDirection));
 									}
@@ -170,7 +189,15 @@ public class EventsListener implements Listener
 						switch (portalType)
 						{
 							case NETHER:
-									plugin.cleanNetherPortal(playerName, firstNode);
+									if (portalDirection != null)
+									{
+										plugin.cleanNetherPortal(playerName, firstNode,
+											portalDirection, portalDirection.getOppositeFace());
+									}
+									else
+									{
+										plugin.cleanNetherPortal(playerName, firstNode);
+									}
 								break;
 							
 							case ENDER:

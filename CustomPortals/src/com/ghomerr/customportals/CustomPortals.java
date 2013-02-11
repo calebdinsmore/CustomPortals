@@ -5,13 +5,13 @@ import java.util.HashSet;
 import java.util.Stack;
 import java.util.logging.Logger;
 
-import net.minecraft.server.v1_4_6.WorldServer;
+import net.minecraft.server.v1_4_R1.WorldServer;
 
 import org.bukkit.Material;
 import org.bukkit.PortalType;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_4_6.CraftWorld;
+import org.bukkit.craftbukkit.v1_4_R1.CraftWorld;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomPortals extends JavaPlugin
@@ -171,7 +171,7 @@ public class CustomPortals extends JavaPlugin
 
 	public void fillNetherPortal(final String player, final Block node, final BlockFace right, final BlockFace left) throws Throwable
 	{
-		floodFill(player, node, Material.PORTAL, Material.AIR, PortalType.NETHER, BlockFace.UP, right, BlockFace.DOWN, left, false);
+		floodFill(player, node, Material.PORTAL, Material.AIR, PortalType.NETHER, BlockFace.DOWN, left, BlockFace.UP, right, false);
 	}
 
 	public void fillEnderPortal(final String player, final Block node) throws Throwable
@@ -184,6 +184,11 @@ public class CustomPortals extends JavaPlugin
 	{
 		floodFill(player, node, Material.AIR, Material.ENDER_PORTAL, PortalType.ENDER, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
 				BlockFace.WEST, true);
+	}
+	
+	public void cleanNetherPortal(final String player, final Block node, final BlockFace right, final BlockFace left) throws Throwable
+	{
+		floodFill(player, node, Material.AIR, Material.PORTAL, PortalType.NETHER, BlockFace.DOWN, left, BlockFace.UP, right, true);
 	}
 	
 	public void cleanNetherPortal(final String player, final Block node) throws Throwable
