@@ -1,7 +1,7 @@
 [CUSTOM PORTALS]
 
 Description:
-This little plugin allows you to create custom Nether and Ender portals.
+This plugin allows you to create custom Nether and Ender portals.
 It means you can create these portals using any blocks for the frame and any shapes.
 
 Configuration:
@@ -38,6 +38,10 @@ customportals.ender # allows to create a custom ender portal
 customportals.clean # allows to clean ender portals
 
 Changelogs:
+Version 1.1.2 on 2013-04-08:
+* Support Dev Build 1.5.1-R0.2
+* Changed the 'update block to portal' method to use only the Bukkit API. (1 block wide nether portals may not generate properly)
+
 Version 1.1.1 on 2013-02-11:
 * Support Recommanded Build 1.4.7-R1.0
 * Added a check of the type of the clicked block for Nether Portal to avoid ability to build portal on wrong frames.

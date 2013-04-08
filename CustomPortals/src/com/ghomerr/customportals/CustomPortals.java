@@ -1,17 +1,14 @@
 package com.ghomerr.customportals;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
 import java.util.logging.Logger;
-
-import net.minecraft.server.v1_4_R1.WorldServer;
 
 import org.bukkit.Material;
 import org.bukkit.PortalType;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.craftbukkit.v1_4_R1.CraftWorld;
+import org.bukkit.block.BlockState;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomPortals extends JavaPlugin
@@ -21,7 +18,7 @@ public class CustomPortals extends JavaPlugin
 	public Material netherFrameBlock = null;
 	public Material enderFrameBlock = null; 
 
-	public HashMap<String, WorldServer> lazyWorldServerMap = new HashMap<String, WorldServer>();
+	//public HashMap<String, WorldServer> lazyWorldServerMap = new HashMap<String, WorldServer>();
 	public HashSet<String> portalCrafters = new HashSet<String>();
 	public EventsListener eventsListener = null;
 
@@ -64,7 +61,7 @@ public class CustomPortals extends JavaPlugin
 	{
 		super.onDisable();
 		portalCrafters.clear();
-		lazyWorldServerMap.clear();
+		//lazyWorldServerMap.clear();
 	}
 
 	public BlockFace getYawDirection(final float inputYaw)
@@ -101,14 +98,14 @@ public class CustomPortals extends JavaPlugin
 			final PortalType portalType, final BlockFace dir1, final BlockFace dir2, final BlockFace dir3, final BlockFace dir4, final boolean isCleaning)
 		throws Throwable
 	{
-		final String worldName = node.getWorld().getName();
-		if (!lazyWorldServerMap.containsKey(worldName))
-		{
-			lazyWorldServerMap.put(worldName, ((CraftWorld) node.getWorld()).getHandle());
-		}
+		//final String worldName = node.getWorld().getName();
+//		if (!lazyWorldServerMap.containsKey(worldName))
+//		{
+//			lazyWorldServerMap.put(worldName, ((CraftWorld) node.getWorld()).getHandle());
+//		}
 
-		final WorldServer worldServer = lazyWorldServerMap.get(worldName);
-		worldServer.suppressPhysics = true;
+		//final WorldServer worldServer = lazyWorldServerMap.get(worldName);
+		//worldServer.suppressPhysics = true;
 
 		final Stack<Block> queue = new Stack<Block>();
 		final Stack<Block> treatedBlocks = new Stack<Block>();
@@ -122,8 +119,12 @@ public class CustomPortals extends JavaPlugin
 
 			if (type == targetMaterial)
 			{
-				treatedBlocks.push(n);
-				worldServer.setTypeId(n.getX(), n.getY(), n.getZ(), portalMaterial.getId());
+				treatedBlocks.push(n);	
+				
+				final BlockState state = n.getState();
+				state.setType(portalMaterial);
+				state.update(true, false); // force = true, applyPhysics = false
+				//worldServer.setTypeId(n.getX(), n.getY(), n.getZ(), portalMaterial.getId());
 
 				queue.push(n.getRelative(dir1));
 				queue.push(n.getRelative(dir2));
@@ -166,7 +167,7 @@ public class CustomPortals extends JavaPlugin
 
 		treatedBlocks.clear();
 		queue.clear();
-		worldServer.suppressPhysics = false;
+		//worldServer.suppressPhysics = false;
 	}
 
 	public void fillNetherPortal(final String player, final Block node, final BlockFace right, final BlockFace left) throws Throwable
