@@ -38,6 +38,9 @@ customportals.ender # allows to create a custom ender portal
 customportals.clean # allows to clean ender portals
 
 Changelogs:
+Version 1.1.3 on 2013-07-20:
+* Support Dev Build 1.6.2-R0.1
+
 Version 1.1.2 on 2013-04-08:
 * Support Dev Build 1.5.1-R0.2
 * Changed the 'update block to portal' method to use only the Bukkit API. (1 block wide nether portals may not generate properly)
