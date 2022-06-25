@@ -1,0 +1,11 @@
+name: CustomPortals
+main: com.ghomerr.customportals.CustomPortals
+version: 2.0.0
+api-version: "1.19"
+author: Caleb Dinsmore (originally Ghomerr)
+description: Make your own fancy portals.
+
+commands:
+    customportals:
+        description: Make your own fancy portals.
+        aliases: [cp, custportals, customportal, cportal]

@@ -48,11 +48,11 @@ public class EventsListener implements Listener
 			{
 				portalType = PortalType.NETHER;
 			}
-			else if (event.getMaterial() == Material.EYE_OF_ENDER)
+			else if (event.getMaterial() == Material.ENDER_EYE)
 			{
 				portalType = PortalType.ENDER;
 			}
-			else if (event.getMaterial() == Material.WOOL)
+			else if (event.getMaterial().toString().toLowerCase().contains("wool"))
 			{
 				portalType = PortalType.CUSTOM;
 			}
@@ -157,7 +157,7 @@ public class EventsListener implements Listener
 					{
 						switch(firstNode.getType())
 						{
-							case ENDER_PORTAL:
+							case END_PORTAL:
 								if (playerHasPermission(player, "customportals.clean"))
 								{
 									event.setCancelled(true);

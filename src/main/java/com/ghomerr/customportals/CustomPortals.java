@@ -172,29 +172,29 @@ public class CustomPortals extends JavaPlugin
 
 	public void fillNetherPortal(final String player, final Block node, final BlockFace right, final BlockFace left) throws Throwable
 	{
-		floodFill(player, node, Material.PORTAL, Material.AIR, PortalType.NETHER, BlockFace.DOWN, left, BlockFace.UP, right, false);
+		floodFill(player, node, Material.NETHER_PORTAL, Material.AIR, PortalType.NETHER, BlockFace.DOWN, left, BlockFace.UP, right, false);
 	}
 
 	public void fillEnderPortal(final String player, final Block node) throws Throwable
 	{
-		floodFill(player, node, Material.ENDER_PORTAL, Material.AIR, PortalType.ENDER, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
+		floodFill(player, node, Material.END_PORTAL, Material.AIR, PortalType.ENDER, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
 				BlockFace.WEST, false);
 	}
 
 	public void cleanEnderPortal(final String player, final Block node) throws Throwable
 	{
-		floodFill(player, node, Material.AIR, Material.ENDER_PORTAL, PortalType.ENDER, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
+		floodFill(player, node, Material.AIR, Material.END_PORTAL, PortalType.ENDER, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
 				BlockFace.WEST, true);
 	}
 	
 	public void cleanNetherPortal(final String player, final Block node, final BlockFace right, final BlockFace left) throws Throwable
 	{
-		floodFill(player, node, Material.AIR, Material.PORTAL, PortalType.NETHER, BlockFace.DOWN, left, BlockFace.UP, right, true);
+		floodFill(player, node, Material.AIR, Material.NETHER_PORTAL, PortalType.NETHER, BlockFace.DOWN, left, BlockFace.UP, right, true);
 	}
 	
 	public void cleanNetherPortal(final String player, final Block node) throws Throwable
 	{
-		floodFill(player, node, Material.AIR, Material.PORTAL, PortalType.NETHER, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
+		floodFill(player, node, Material.AIR, Material.NETHER_PORTAL, PortalType.NETHER, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH,
 				BlockFace.WEST, true);
 	}
 }
